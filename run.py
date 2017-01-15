@@ -14,7 +14,7 @@ from flask import send_from_directory
 import requests
 import pusher
 import json
-cd
+
 
 app = Flask(__name__)
 
