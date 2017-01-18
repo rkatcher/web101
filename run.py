@@ -18,22 +18,27 @@ import json
 
 app = Flask(__name__)
 
+# sample GET returns text
 @app.route("/")
 def welcome():
     return "Welcome to your sample app!"
 
+# sample GET returns web page
+@app.route('/')
+def home():
+    return send_from_directory('docs', 'home.htm')
+
+# sample POST returns name field
 @app.route("/dataReceive", methods = ['POST'])
 def dataReceive():
     # placeholder for receiving data
-    payload = request.data
-    payload = json.loads(payload)
-    data = payload['data']
+    name=request.form.get('name', 'no name provided!')
+    return name
 
-    return data['name']
-
-@app.route('/home')
-def home():
-    return send_from_directory('docs', 'home.htm')
+    # payload = request.data
+    # payload = json.loads(payload)
+    # data = payload['data']
+    # return data['name']
 
 
 if __name__ == "__main__":
